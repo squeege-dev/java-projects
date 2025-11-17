@@ -1,0 +1,52 @@
+>>># <Patient Management>
+
+#   >> Required Fields:
+        > Name, Age, Sex, Contact Number, Address
+        > Bloodtype, Allergies, Medical History, Current Medications
+        > Priority Type (0 = Normal, 1 = Emergency) - for Queuing/sechduling
+        > Active or Inactive 
+#   >> Optional Field:
+        > Bool for allowing Deletion of patient record/account
+        > Bool to track status fields of Patient
+
+
+>>>#  <Doctor Management >
+
+    Required Fields:
+        > Name, Sex, Specialty, Contact Number, Address
+        > Availability/Work Schedule 
+            Sunday To Monday 
+            - Pwede sa monday na 7am - 12pm tas sa tuesday pang hapon. 
+            - Pwede din na di available yung doctor ng isang araw.
+        
+>>># <Appointment Scheduling>  
+
+* Create appointment in FIFO within same date time slot
+* Provide an option for a normal or priority.
+* Validate patient exists; 
+* Reject time conflicts.
+
+        Mag set tayo ng mga limits kada schedule appointments.
+        For example si doc avail siya from 7am to 12pm, kada appointment pwede tumagal ng 1hr - so sa loob ng sched niya na 7-12, 5 lang pwede niya i handle.
+        Tas need din na if may naka puno na yung schedule ni doc. if Normal lang naman yung queue, pwede mag suggest ng ibang date&time slot or kung ano mas maganda para i handle yung case pag may mga ganon.
+
+#   >> Required Fields: 
+        > Multiple Normal & Priority Queues (isa kada doctor, naka depende sa priority level).
+            Pili nalang siguro if mag normal queue or priority queue
+
+        > Queue Number (Number ng Patient sa Pila nung queue)
+            ket nag increment nalang yung number (ex. 1001,1002,1003, and so on.)
+    
+#   >> Functions (Method sa Class):  
+
+        Dequeue(Serve/Attend): 
+            Serve the earliest scheduled appointment. Aalisin na yung sa unahan ng queue, bale parang okay na siya treated na.
+            Papalitan na rin yung field nung patient na status dun sa patient record na class.
+            Mas okay siguro if pag na serve na status maging
+            Dadagdag to sa Treatment History Record ni Patient.
+            
+        View Queues/Scheduled Appointments: Queue number must be displayed and can be viewed both by patient and doctor.
+
+        Cancel: Remove a SCHEDULED appointment by appointment.
+
+        Reschedule: Let the patient update date/times lot of their appointment.
